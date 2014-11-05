@@ -1,6 +1,17 @@
 CHANGELOG
 =========
 
+Revision 02b793f (05.11.2014, 09:31 UTC)
+----------------------------------------
+
+* LUN-1859
+
+  * _quick Remove template code duplication.
+  * _quick Proper formating for templates (use non-wrap mode). Proper closing of <a> tag.
+  * _quick Resurect the old logic of having the template serving the original image or the version resized by thumbnailer templatetag.
+
+No other commits.
+
 Revision f76aaf5 (03.07.2014, 07:31 UTC)
 ----------------------------------------
 
