@@ -242,6 +242,7 @@ class FilerImagePlugin(CMSPluginBase):
                 instance.credit.strip(),
             'style': style,
             'link': instance.link,
+            'overlay_link': instance.overlay_link,
             'opts': options,
             'size': options.get('size', None),
             'placeholder': placeholder,

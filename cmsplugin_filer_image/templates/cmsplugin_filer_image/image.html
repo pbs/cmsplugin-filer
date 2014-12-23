@@ -4,8 +4,8 @@
 {% with d1='0123456789'|make_list|random d2='0123456789'|make_list|random d3='0123456789'|make_list|random d4='0123456789'|make_list|random %}
   {% with rnd='imagePlugin_'|add:d1|add:d2|add:d3|add:d4 %}
 
-    {% if link and instance.enable_event_tracking and instance.event_category and instance.event_action %}
-      {% addtoblock "js" %}
+    {% addtoblock "js" %}
+      {% if link and instance.enable_event_tracking and instance.event_category and instance.event_action %}
         <script type="text/javascript">
             (function($){
               $(document).ready(function(){
@@ -13,8 +13,21 @@
               });
             })(jQuery)
         </script>
-      {% endaddtoblock %}
-    {% endif %}
+      {% endif %}
+
+      {% if overlay_link %}
+        <!--script type="text/javascript" href="{{ STATIC_URL }}cmsplugin_filer_image/js/overlay.js" /-->
+        <script type="text/javascript">
+            (function($){
+                $('#{{rnd}}').click(function(){
+                    var imgURL = $(this).data('rel');
+                    $('#{{rnd}}').after('<div class="frame" style="position: absolute; left: 0; top: 0; height: 100%; width: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.88);"> <span style="display: inline-block; height: 100%; vertical-align: middle;"></span><img style="vertical-align: middle; max-height: 90%; max-width: 90%;" src="' + imgURL + '" /></div>');
+                    $('.frame').click(function() {$('.frame').remove();} );
+                });
+            })(jQuery)
+        </script>
+      {% endif %}
+    {% endaddtoblock %}
 
     {% if instance.image %}
         {% if instance.image.width == opts.size.0 and instance.image.height == opts.size.1 %}

@@ -39,3 +39,7 @@
     padding: 0 10px 10px 10px;
 }
 
+.zoom-in{
+    cursor: zoom-in;
+    cursor: -webkit-zoom-in;
+}
