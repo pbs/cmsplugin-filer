@@ -21,11 +21,11 @@
                 $('#{{rnd}}').click(function(){
                     var imgURL = $(this).data('rel');
                     $('body').append(
-                        '<div class="frame" style="z-index: 10002; position: fixed; left: 0; top: 0; height: 100%; width: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.88);">'+
-                            '<span style="display: inline-block; height: 100%; vertical-align: middle;"> </span>'+
-                            '<img style="vertical-align: middle; max-height: 90%; max-width: 90%;" src="' + imgURL + '" />'+
+                        '<div class="preview-image-overlay">'+
+                            '<span> </span>'+
+                            '<img src="' + imgURL + '" />'+
                         '</div>');
-                    $('.frame').click(function() {$('.frame').remove();} );
+                    $('.preview-image-overlay').click(function() {$('.preview-image-overlay').remove();} );
                 });
             })(jQuery)
         </script>
