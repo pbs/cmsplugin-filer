@@ -1,6 +1,19 @@
 CHANGELOG
 =========
 
+Revision f746876 (11.03.2015, 13:58 UTC)
+----------------------------------------
+
+No new issues.
+
+* Misc commits
+
+  * move styles from .html to .css
+  * z-index as small as possible; minor style change
+  * verify that image actually exists
+  * overlay on image click works
+  * overlay on click almost works
+
 Revision 02b793f (05.11.2014, 09:31 UTC)
 ----------------------------------------
 
