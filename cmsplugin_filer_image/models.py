@@ -98,8 +98,7 @@ class ThumbnailOption(models.Model):
                 "width": self.width,
                 "height": self.height,
                 "crop": self.crop,
-                'upscale': self.upscale,
-        }
+                'upscale': self.upscale, }
 
 
 class FilerImage(CMSPlugin):
@@ -154,7 +153,7 @@ class FilerImage(CMSPlugin):
         null=True, blank=True, on_delete=models.SET_NULL,
         default=None, verbose_name=_("image"))
 
-    ##Image Options
+    # Image Options
     thumbnail_option = models.ForeignKey(
         'ThumbnailOption', null=True,
         blank=True, verbose_name=_("image size"),
@@ -193,7 +192,8 @@ class FilerImage(CMSPlugin):
         null=True, help_text=_("if present image will be clickable"))
     target_blank = models.BooleanField(
         _('Open link in new window'), default=False)
-    page_link = models.ForeignKey(Page,
+    page_link = models.ForeignKey(
+        Page,
         null=True,  blank=True,
         help_text=_("if present image will be clickable"),
         verbose_name=_("page link"))
@@ -203,7 +203,7 @@ class FilerImage(CMSPlugin):
         help_text=_("if present image will be clickable"),
         related_name='+')
 
-    ## Advanced
+    # Advanced
     width = models.PositiveIntegerField(
         _("width"), null=True, blank=True)
     height = models.PositiveIntegerField(
@@ -227,7 +227,7 @@ class FilerImage(CMSPlugin):
             "width of the line; there is no line if left blank.")
     )
 
-    ## Event tracking
+    # Event tracking
     enable_event_tracking = models.BooleanField(
         _("Enable event tracking"), default=False)
     event_category = models.CharField(
@@ -237,8 +237,8 @@ class FilerImage(CMSPlugin):
     event_label = models.CharField(
         _("Event label"), null=True, blank=True, max_length=30)
 
-    ## Deprecated fields. kept for backward compatibility
-    ## to be removed at some point in time
+    # Deprecated fields. kept for backward compatibility
+    # to be removed at some point in time
     upscale = models.BooleanField(_("upscale"), default=True)
     description = models.TextField(
         _("description"), blank=True, null=True)
@@ -322,11 +322,15 @@ class FilerImage(CMSPlugin):
         elif (self.link_options == self.OPT_FILE_LINK and
                 self.has_attached_file_link()):
             return self.file_link.url
-        elif (self.link_options == self.OPT_ORIGINAL_IMG_LINK and
-                self.has_attached_image()):
-            return self.image.url
         else:
             return ''
+
+    @property
+    def overlay_link(self):
+        if (self.link_options == self.OPT_ORIGINAL_IMG_LINK and
+                self.has_attached_image()):
+            return self.image.url
+        return ''
 
     @property
     def vert_space(self):
@@ -349,9 +353,11 @@ class FilerImage(CMSPlugin):
                 self.vert_space, self.vert_space)
 
         if (not self.alignment == self.CENTER
-            and isinstance(self.horiz_space, (int, long))):
+                and isinstance(self.horiz_space, (int, long))):
             style += "margin-right: %spx; margin-left: %spx;" % (
                 self.horiz_space, self.horiz_space)
 
-        style += "border: %spx solid black;" % self.border if self.border else ""
+        if self.border:
+            style += "border: %spx solid black;" % self.border
+
         return style
