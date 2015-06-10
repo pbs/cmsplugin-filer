@@ -9,7 +9,6 @@ import warnings
 from django import forms
 from django.core.exceptions import ValidationError
 from cmsplugin_filer_image.models import ThumbnailOption
-from django.db.models.query import EmptyQuerySet
 
 from filer.settings import FILER_STATICMEDIA_PREFIX as static_prefix
 from easy_thumbnails.exceptions import EasyThumbnailsError
