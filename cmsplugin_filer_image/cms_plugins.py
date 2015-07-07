@@ -21,6 +21,7 @@ except:
 class FilerImagePluginForm(forms.ModelForm):
     class Meta:
         model = models.FilerImage
+        exclude = ()
 
     def __init__(self, *args, **kwargs):
         super(FilerImagePluginForm, self).__init__(*args, **kwargs)

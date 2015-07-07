@@ -32,11 +32,8 @@ setup(
     ],
     install_requires=[
         "django-cms>=2.3.5pbs, <2.3.6",
-        "django-sekizai >= 0.4.2",
-        "easy_thumbnails >= 1.0",
         "django-filer >= 0.9pbs, <0.9.1"
     ],
     include_package_data=True,
     zip_safe = False,
-    setup_requires=['s3sourceuploader', ],
 )

@@ -24,6 +24,9 @@ class FilerFolder(CMSPlugin):
 
     objects = FilerPluginManager(select_related=('folder',))
 
+    class Meta:
+        db_table = 'cmsplugin_filerfolder'
+
     def has_attached_folder(self):
         try:
             return self.folder

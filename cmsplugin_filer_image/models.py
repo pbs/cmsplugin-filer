@@ -264,6 +264,7 @@ class FilerImage(CMSPlugin):
     class Meta:
         verbose_name = _("filer image")
         verbose_name_plural = _("filer images")
+        db_table = 'cmsplugin_filerimage'
 
     def clean(self):
         # Make sure that either image or image_url is set
@@ -303,7 +304,7 @@ class FilerImage(CMSPlugin):
 
     def has_attached_image(self):
         try:
-            return self.image
+            return (self.image if self.image_id else None)
         except filer.models.Image.DoesNotExist:
             return None
 

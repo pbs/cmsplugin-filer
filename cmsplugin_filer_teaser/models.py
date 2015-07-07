@@ -38,6 +38,9 @@ class FilerTeaser(CMSPlugin):
 
     objects = FilerPluginManager(select_related=('image', 'page_link'))
 
+    class Meta:
+        db_table = 'cmsplugin_filerteaser'
+
     def clean(self):
         from django.core.exceptions import ValidationError
         # Make sure that either image or image_url is set
