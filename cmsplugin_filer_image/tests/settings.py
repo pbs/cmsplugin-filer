@@ -15,7 +15,12 @@ INSTALLED_APPS = [
     'cms',
     'filer',
     'easy_thumbnails',
-    'cmsplugin_filer_image'
+    'cmsplugin_filer_image',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_link',
+    'cmsplugin_filer_teaser',
+    'cmsplugin_filer_video',
 ]
 
 FILER_ENABLE_PERMISSIONS = True

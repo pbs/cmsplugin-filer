@@ -25,6 +25,8 @@ class FilerLinkPlugin(CMSPlugin):
     file = FilerFileField(
         blank=True, null=True, on_delete=models.SET_NULL, default=None)
 
+    class Meta:
+        db_table = 'cmsplugin_filerlink'
 
     def __unicode__(self):
         return u'%s' % self.name

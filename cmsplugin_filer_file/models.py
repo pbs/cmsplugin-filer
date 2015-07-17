@@ -25,6 +25,9 @@ class FilerFile(CMSPlugin):
 
     objects = FilerPluginManager(select_related=('file',))
 
+    class Meta:
+        db_table = 'cmsplugin_filerfile'
+
     def has_attached_file(self):
         try:
             return self.file

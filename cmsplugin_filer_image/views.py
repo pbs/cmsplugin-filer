@@ -38,4 +38,4 @@ def fetch_image_metadata(request):
               'height': file._height,
               'options': options} if file else {}
 
-    return HttpResponse(json.dumps(result), mimetype="application/json")
+    return HttpResponse(json.dumps(result), content_type="application/json")
