@@ -2,8 +2,9 @@ from cms.models import CMSPlugin
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
-from django.conf import settings
+from django.templatetags.static import static
 from cmsplugin_filer_utils import FilerPluginManager
+from urlparse import urlparse
 import filer
 
 
@@ -37,11 +38,8 @@ class FilerFile(CMSPlugin):
     def get_icon_url(self):
         return self.file.icons['32'] if self.has_attached_file() else None
 
-    def get_adjusted_icon_url(self):
-        icon_url = self.get_icon_url()
-        if icon_url.find(settings.STATIC_URL + 'http://') > -1:
-            return icon_url.replace(settings.STATIC_URL, "", 1)
-        return icon_url
+    def is_absolute_url(self):
+        return bool(urlparse(self.get_icon_url()).netloc)
 
     def file_exists(self):
         if not self.has_attached_file():
