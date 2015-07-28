@@ -38,7 +38,10 @@ class FilerFile(CMSPlugin):
         return self.file.icons['32'] if self.has_attached_file() else None
 
     def get_adjusted_icon_url(self):
-        return self.get_icon_url().replace(settings.STATIC_URL, "", 1)
+        icon_url = self.get_icon_url()
+        if icon_url.find(settings.STATIC_URL + 'http://') > -1:
+            return icon_url.replace(settings.STATIC_URL, "", 1)
+        return icon_url
 
     def file_exists(self):
         if not self.has_attached_file():
