@@ -2,7 +2,6 @@ from cms.models import CMSPlugin
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from filer.fields.file import FilerFileField
-from django.templatetags.static import static
 from cmsplugin_filer_utils import FilerPluginManager
 from urlparse import urlparse
 import filer
