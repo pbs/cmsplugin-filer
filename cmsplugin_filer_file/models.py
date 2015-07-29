@@ -38,7 +38,7 @@ class FilerFile(CMSPlugin):
         return self.file.icons['32'] if self.has_attached_file() else None
 
     def is_absolute_url(self):
-        return bool(urlparse(self.get_icon_url()).netloc)
+        return bool(urlparse(self.get_icon_url() or '').netloc)
 
     def file_exists(self):
         if not self.has_attached_file():

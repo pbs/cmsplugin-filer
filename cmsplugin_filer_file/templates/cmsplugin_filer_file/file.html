@@ -2,7 +2,7 @@
 <span class="file" {% if inherited_from_parent %} style="{{inherited_from_parent.style}}" {% endif %} >
 <a href="{{ object.file.url }}"{% if object.target_blank %} target="_blank"{% endif %}>
 {% if object.get_icon_url %}
-    <img src="{% if object.is_absolute_url %}{{ object.get_icon_url }}{% else %}{{ PROXY_PREFIX }}{{ object.get_icon_url }}{% endif %}" style="border: 0px" alt="Icon" />
+    <img src="{% if object.is_absolute_url == False %}{{ PROXY_PREFIX }}{% endif %}{{ object.get_icon_url }}" style="border: 0px" alt="Icon" />
 {% endif %}
 {% if object.title %}{{ object.title }}{% else %}{{ object.get_file_name }}{% endif %} {% if object.file_exists %}<span class="filesize">({{ object.file.size|filesizeformat }})</span>{% else %}(file missing!){% endif %}</a>
 </span>
