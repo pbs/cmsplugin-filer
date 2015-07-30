@@ -1,6 +1,19 @@
 CHANGELOG
 =========
 
+Revision 34a8446 (30.07.2015, 09:10 UTC)
+----------------------------------------
+
+* LUN-2416
+
+  * Fix broken icon.
+
+* Misc commits
+
+  * Improve check of absolute URL. Remove duplicate code.
+  * Remove unused import.
+  * Improve icon url for proxied sites.
+
 Revision 7b2af0a (17.07.2015, 14:50 UTC)
 ----------------------------------------
 
