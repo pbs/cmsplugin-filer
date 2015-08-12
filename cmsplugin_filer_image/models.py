@@ -72,6 +72,7 @@ class ThumbnailOption(models.Model):
     objects = ThumbnailOptionManager()
 
     class Meta:
+        unique_together = ("name", "width", "height", "crop", "upscale")
         ordering = ('-width', )
         verbose_name = _("thumbnail option")
         verbose_name_plural = _("thumbnail options")
