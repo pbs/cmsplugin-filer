@@ -1,3 +1,7 @@
+.filer_image_container{
+    margin-bottom: 12px;
+}
+
 .filer_image_container + div,
 .filer_image_container + span.img-details + div{
     clear: both;
