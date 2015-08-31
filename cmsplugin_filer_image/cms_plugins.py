@@ -45,7 +45,8 @@ class FilerImagePluginForm(forms.ModelForm):
                 self.instance.has_attached_image())
         self.fields['thumbnail_option'].widget.choices.queryset = qs
 
-        caption_credit_img = ('%sadmin/img/image-caption-credit.jpg' % (settings.STATIC_URL) )
+        caption_credit_img = ('%sadmin/img/image-caption-credit.jpg' 
+            % (settings.STATIC_URL) )
 
         popup_html= _("<span class='help-button' data-rel='popover' "
                       "data-trigger='hover' data-placement='right' "
