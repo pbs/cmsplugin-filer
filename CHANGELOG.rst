@@ -1,6 +1,20 @@
 CHANGELOG
 =========
 
+Revision 9dd9625 (31.08.2015, 14:26 UTC)
+----------------------------------------
+
+* LUN-2287
+
+  * refactor code
+  * refactor code + js fix for pop-up helper image
+  * refactor code
+  * - removed unused css file
+  * error messages styled
+  * template and css updates according to Ace theme
+
+No other commits.
+
 Revision 34a8446 (30.07.2015, 09:10 UTC)
 ----------------------------------------
 
