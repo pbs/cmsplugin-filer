@@ -45,10 +45,6 @@ class FilerImagePluginForm(forms.ModelForm):
                 self.instance.has_attached_image())
         self.fields['thumbnail_option'].widget.choices.queryset = qs
 
-        #This html is appended in the document by popup_helper_image.js.
-        # I need to setup it here because STATIC_URL is not available in
-        # popup_helper_image.js
-
         popup_html= _("<span class='help-button' data-rel='popover' data-trigger='hover' data-placement='right' data-content='<img src=%sadmin/img/image-caption-credit.jpg/>' data-original-title='' title=''>?</span>"
                          % (
                           settings.STATIC_URL))
@@ -137,7 +133,6 @@ class FilerImagePlugin(CMSPluginBase):
               "admin/js/link_options.js",
               "admin/js/advanced_panel_text_additions.js",
               "admin/js/caption_formatting.js",
-              "admin/js/popup_helper_image.js",
               "admin/js/event_tracking.js",)
         css = {
             'all': ("admin/css/filer_image_form.css",)

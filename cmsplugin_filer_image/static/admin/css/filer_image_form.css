@@ -118,3 +118,10 @@ input[type="checkbox"]:checked+.lbl::after{
 .help-button {
 	margin-right: 10px;
 }
+.field-file_link br {
+	display: none;
+}
+.errors.field-file_link .col-sm-9:before{
+  top: -1px;
+  left: 18px;
+}
