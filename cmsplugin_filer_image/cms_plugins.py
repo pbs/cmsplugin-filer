@@ -45,13 +45,14 @@ class FilerImagePluginForm(forms.ModelForm):
                 self.instance.has_attached_image())
         self.fields['thumbnail_option'].widget.choices.queryset = qs
 
-        #This html is appended in the document by popup_helper_image.js.
-        # I need to setup it here because STATIC_URL is not available in
-        # popup_helper_image.js
-        popup_html= _("<div class='helper_img'><a href='%sadmin/img/image-caption-credit.jpg'>"
-                      "<img src='%sadmin/img/icon-unknown.gif' width='16' height='16'>"
-                      "Wait, how are these fields displayed?</a></div>" % (
-                          settings.STATIC_URL, settings.STATIC_URL))
+        caption_credit_img = ('%sadmin/img/image-caption-credit.jpg' 
+            % (settings.STATIC_URL) )
+
+        popup_html= _("<span class='help-button' data-rel='popover' "
+                      "data-trigger='hover' data-placement='right' "
+                      "data-content='<img src=%s/>' "
+                      "data-original-title='' title=''>?</span>"
+                            % (caption_credit_img))
         self.fields['image'].widget.attrs.update({'helper_popup': popup_html})
 
     def clean_free_link(self):
@@ -138,16 +139,9 @@ class FilerImagePlugin(CMSPluginBase):
               "admin/js/advanced_panel_text_additions.js",
               "admin/js/caption_formatting.js",
               "admin/js/popup_helper_image.js",
-              # From this point on jQuery (version 1.4.2) is available as
-              # jQuery142 and jQuery will be upgraded to v1.11.0
-              # jQuery must be upgraded for jQuery toggles plugin
-              "admin/js/jquery-no-conflict.js",
-              "admin/js/jquery-1.11.0.min.js",
-              "admin/js/toggles.min.js",
               "admin/js/event_tracking.js",)
         css = {
-            'all': ("admin/css/filer_image_form.css",
-                    "admin/css/toggles-modern.css",)
+            'all': ("admin/css/filer_image_form.css",)
             }
 
     def _get_thumbnail_options(self, context, instance):
