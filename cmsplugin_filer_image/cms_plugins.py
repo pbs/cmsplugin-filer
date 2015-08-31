@@ -45,11 +45,13 @@ class FilerImagePluginForm(forms.ModelForm):
                 self.instance.has_attached_image())
         self.fields['thumbnail_option'].widget.choices.queryset = qs
 
-        popup_html= _("<span class='help-button' data-rel='popover' data-trigger='hover' "
-                    "data-placement='right' data-content='<img src=%sadmin/img/image-caption-credit.jpg/>' "
-                    "data-original-title='' title=''>?</span>"
-                         % (
-                          settings.STATIC_URL))
+        caption_credit_img = ('%sadmin/img/image-caption-credit.jpg' % (settings.STATIC_URL) )
+
+        popup_html= _("<span class='help-button' data-rel='popover' "
+                      "data-trigger='hover' data-placement='right' "
+                      "data-content='<img src=%s/>' "
+                      "data-original-title='' title=''>?</span>"
+                            % (caption_credit_img))
         self.fields['image'].widget.attrs.update({'helper_popup': popup_html})
 
     def clean_free_link(self):
@@ -135,6 +137,7 @@ class FilerImagePlugin(CMSPluginBase):
               "admin/js/link_options.js",
               "admin/js/advanced_panel_text_additions.js",
               "admin/js/caption_formatting.js",
+              "admin/js/popup_helper_image.js",
               "admin/js/event_tracking.js",)
         css = {
             'all': ("admin/css/filer_image_form.css",)
