@@ -1,6 +1,19 @@
 CHANGELOG
 =========
 
+Revision d78cb65 (12.09.2015, 11:24 UTC)
+----------------------------------------
+
+* LUN-2319
+
+  * add spacing to the bottom of image plugin
+
+* LUN-2583
+
+  * Removed preview
+
+No other commits.
+
 Revision 9dd9625 (31.08.2015, 14:26 UTC)
 ----------------------------------------
 
