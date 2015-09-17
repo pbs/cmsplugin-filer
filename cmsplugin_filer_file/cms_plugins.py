@@ -11,6 +11,7 @@ class FilerFilePlugin(CMSPluginBase):
     render_template = "cmsplugin_filer_file/file.html"
     text_enabled = True
     admin_preview = False
+    raw_id_fields = ('file', )
 
     def render(self, context, instance, placeholder):
         context.update({
