@@ -45,7 +45,7 @@ class FilerImagePluginForm(forms.ModelForm):
                 self.instance.has_attached_image())
         self.fields['thumbnail_option'].widget.choices.queryset = qs
 
-        caption_credit_img = ('%sadmin/img/image-caption-credit.jpg' 
+        caption_credit_img = ('%sadmin/img/image-caption-credit.jpg'
             % (settings.STATIC_URL) )
 
         popup_html= _("<span class='help-button' data-rel='popover' "
@@ -102,7 +102,7 @@ class FilerImagePlugin(CMSPluginBase):
     name = _("Image")
     render_template = "cmsplugin_filer_image/image.html"
     text_enabled = True
-    raw_id_fields = ('image',)
+    raw_id_fields = ('image', 'file_link')
     admin_preview = False
     fieldsets = (
         (None, {
