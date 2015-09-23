@@ -16,6 +16,7 @@ class FilerFolderPlugin(CMSPluginBase):
     render_template = "cmsplugin_filer_folder/folder.html"
     text_enabled = False
     admin_preview = False
+    raw_id_fields = ('folder', )
 
     def get_folder_files(self, folder, user):
         if not folder:
