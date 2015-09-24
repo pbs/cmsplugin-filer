@@ -1,6 +1,18 @@
 CHANGELOG
 =========
 
+Revision 24ac5d3 (24.09.2015, 11:13 UTC)
+----------------------------------------
+
+No new issues.
+
+* Misc commits
+
+  * Django 1.8: removed add/change/delete related buttons from filer widgets
+  * Django 1.8: removed add/change/delete related buttons from filer widgets
+  * DJango 1.8 upgrade: removed some django1.9 deprecation warnings
+  * Django 1.8 upgrade: updated test settings
+
 Revision d78cb65 (12.09.2015, 11:24 UTC)
 ----------------------------------------
 
