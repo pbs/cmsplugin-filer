@@ -19,9 +19,9 @@ def forward(apps, schema_editor):
     for duplicate in duplicates:
         qs = ThumbnailOption.objects.filter(
             **{x: duplicate[x] for x in unique_fields})
-        id_to_keep = qs[:1][0].id
+        id_to_keep = qs[0].id
 
-        for thumbnail_option in qs[1:]:
+        for thumbnail_option in qs:
             for filer_image in thumbnail_option.filerimage_set.all():
                 filer_image.thumbnail_option_id = id_to_keep
                 filer_image.save()
