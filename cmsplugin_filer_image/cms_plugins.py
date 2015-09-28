@@ -24,6 +24,11 @@ class FilerImagePluginForm(forms.ModelForm):
         exclude = ()
 
     def __init__(self, *args, **kwargs):
+        # hide related buttons for page link
+        page_link_widget = self.base_fields['page_link'].widget
+        page_link_widget.can_add_related = \
+            page_link_widget.can_change_related = \
+            page_link_widget.can_delete_related = False
         super(FilerImagePluginForm, self).__init__(*args, **kwargs)
 
         link_options_field = self.fields.get('link_options', None)
