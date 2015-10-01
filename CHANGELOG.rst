@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+Revision 904c204 (01.10.2015, 12:24 UTC)
+----------------------------------------
+
+* LUN-2677
+
+  * hide related buttons for page link form field
+
+No other commits.
+
 Revision 24ac5d3 (24.09.2015, 11:13 UTC)
 ----------------------------------------
 
