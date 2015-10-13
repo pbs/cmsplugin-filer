@@ -1,6 +1,19 @@
 CHANGELOG
 =========
 
+Revision 014acee (13.10.2015, 13:16 UTC)
+----------------------------------------
+
+* LUN-2681
+
+  * Image plugin styled to match the style from Photogallery
+
+* Misc commits
+
+  * Remove slicing.
+  * Code review improvements:  - drop order_by.  - extract query set in a variable.  - remove max_id.  - call save() for filer_image instance.
+  * Fix unexpected multiple ThumbnailOption in filer image plugin.
+
 Revision 904c204 (01.10.2015, 12:24 UTC)
 ----------------------------------------
 
