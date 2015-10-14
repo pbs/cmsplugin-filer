@@ -8,7 +8,7 @@
     clear: both;
 }
 
-.img-details{
+.filer_image_container .img-details{
     background: rgba(0, 0, 0, .5);
     border-top: 1px solid #464646;
     margin-top: 0 !important;
@@ -24,7 +24,7 @@
     webkit-box-sizing: border-box;
     moz-box-sizing: border-box;
 }
-.img-details .img-caption{
+.filer_image_container .img-details .img-caption{
     color: #d1d2d4;
     padding: 15px 0px;
     display: block;
@@ -32,7 +32,7 @@
     line-height: 15px;
     font-weight: bold;
 }
-.img-details .img-credit{
+.filer_image_container .img-details .img-credit{
     color: #d1d2d4;
     padding: 0 0 19px 0;
     display: block;
