@@ -42,7 +42,9 @@
     opacity: 0.7;
     font-weight: bold;
 }
-
+.filer_image_container .img-details .img-credit:first-child {
+    padding: 10px 0;
+}
 .zoom-in{
     cursor: zoom-in;
     cursor: -webkit-zoom-in;
