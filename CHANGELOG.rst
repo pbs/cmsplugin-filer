@@ -1,6 +1,19 @@
 CHANGELOG
 =========
 
+Revision e93d6be (20.10.2015, 13:22 UTC)
+----------------------------------------
+
+* LUN-2718
+
+  * add specificity to selectors
+
+* LUN-2724
+
+  * fixed credit text on small image
+
+No other commits.
+
 Revision 014acee (13.10.2015, 13:16 UTC)
 ----------------------------------------
 
