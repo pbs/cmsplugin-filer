@@ -1,46 +1,50 @@
-{% load thumbnail filer_tags filer_image_tags sekizai_tags %}{% spaceless %}
-{% addtoblock "css" %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}cmsplugin_filer_image/css/filer_image.css" media="screen, projection" />{% endaddtoblock "css" %}
+{% load thumbnail filer_tags filer_image_tags sekizai_tags %}
+{% spaceless %}
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}cmsplugin_filer_image/css/filer_image.css" media="screen, projection"/>
+{% endaddtoblock %}
 
-{% with d1='0123456789'|make_list|random d2='0123456789'|make_list|random d3='0123456789'|make_list|random d4='0123456789'|make_list|random %}
-  {% with rnd='imagePlugin_'|add:d1|add:d2|add:d3|add:d4 %}
+{% addtoblock "js" %}
+{% if event_tracking %}
+<script type="text/javascript">
+ (function($) {
+   $(document).ready(function(){
+     var event = ['_trackEvent', '{{ event_tracking.category }}', '{{ event_tracking.action}}', '{{ event_tracking.label }}'];
+     $("#{{ rnd }} .image-link").off('click').click(function() {
+       _gaq.push(event);
+     });
+   });
+ })(jQuery)
+</script>
+{% endif %}
 
-    {% addtoblock "js" %}
-      {% if link and instance.enable_event_tracking and instance.event_category and instance.event_action %}
-        <script type="text/javascript">
-            (function($){
-              $(document).ready(function(){
-                $("#{{rnd}} .image-link").off('click').click(function(){_gaq.push(['_trackEvent', '{{instance.event_category}}', '{{instance.event_action}}', '{% if instance.event_label %}{{instance.event_label}}{% endif %}'])})
-              });
-            })(jQuery)
-        </script>
-      {% endif %}
+{% if overlay_link %}
+<script type="text/javascript">
+ (function($){
+   $('#{{ rnd }}').click(function(){
+     $('body').append(
+       '<div class="preview-image-overlay"><span> </span>' +
+       '<img src="{{ overlay_link }}" /></div>');
+     $('.preview-image-overlay').click(function() {$('.preview-image-overlay').remove();});
+   });
+ })(jQuery);
+</script>
+{% endif %}
+{% endaddtoblock %}
 
-      {% if overlay_link %}
-        <script type="text/javascript">
-            (function($){
-                $('#{{rnd}}').click(function(){
-                    var imgURL = $(this).data('rel');
-                    $('body').append(
-                        '<div class="preview-image-overlay">'+
-                            '<span> </span>'+
-                            '<img src="' + imgURL + '" />'+
-                        '</div>');
-                    $('.preview-image-overlay').click(function() {$('.preview-image-overlay').remove();} );
-                });
-            })(jQuery)
-        </script>
-      {% endif %}
-    {% endaddtoblock %}
-
-    {% if instance.image %}
-        {% if instance.image.width == opts.size.0 and instance.image.height == opts.size.1 %}
-            <!-- the width/height chosen as options are same with the original image width/height -->
-            {% include "cmsplugin_filer_image/img_element.html" with sized_image=instance.image %}
-        {% else  %}
-            {% thumbnail instance.image size crop=opts.crop upscale=opts.upscale subject_location=opts.subject_location as thumbnail %}
-            {% include "cmsplugin_filer_image/img_element.html" with sized_image=thumbnail %}
-        {% endif %}
-    {% endif %}
-  {% endwith%}
-{% endwith %}
+{% if image_url %}
+<span id="{{ rnd }}" class="filer_image_container {{ container_classes }}" {{ container_attributes }}
+      style="{{ container_style }}">
+  {% if link %}<a class="image-link" style="width:{{ image_width }}px;" href="{{ link }}"
+                  target="{{ link_target }}">{% endif %}
+  <img class="filer_image" alt="{{ img_alt }}" src="{{ image_url }}"
+       width="{{ image_width }}" height="{{ image_height }}"
+       {% if caption %}title="{{ caption }}"{% endif %}/>
+  <span class="img-details" style="{{ details_style }}">
+    <span class="img-caption">{{ caption }}</span>
+    <span class="img-credit">{{ credit }}</span>
+  </span>
+  {% if link %}</a>{% endif %}
+</span>
+{% endif %}
 {% endspaceless %}

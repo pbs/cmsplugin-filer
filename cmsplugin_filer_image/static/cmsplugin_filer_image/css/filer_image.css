@@ -1,6 +1,28 @@
 .filer_image_container{
     margin-bottom: 12px;
     position: relative;
+    display: block;
+    max-width: 100%;
+}
+
+.filer_image_container .image-link {
+    display: block;
+    max-width: 100%;
+}
+
+.filer_image_container.has-credit,
+.filer_image_container.has-caption {
+    margin-bottom:0;
+}
+
+.filer_image_container .filer_image {
+    display: block;
+    max-width: 100%;
+}
+
+.filer_image_container.has-credit .filer_image,
+.filer_image_container.has-caption .filer_image {
+    margin-bottom:0;
 }
 
 .filer_image_container + div,
@@ -16,31 +38,44 @@
     line-height: 18px;
     letter-spacing: 1px;
     font-weight: 400;
-    display: inline-block;
     padding: 0 18px;
     position: absolute;
     bottom: 0;
     box-sizing: border-box;
     webkit-box-sizing: border-box;
     moz-box-sizing: border-box;
+    display:none;
+    max-width:100%;
 }
+
+.filer_image_container.has-credit .img-details,
+.filer_image_container.has-caption .img-details {
+    display: block;
+}
+
 .filer_image_container .img-details .img-caption{
     color: #d1d2d4;
     padding: 15px 0px;
-    display: block;
+    display: none;
     font-size: 15px;
     line-height: 15px;
     font-weight: bold;
 }
+.filer_image_container.has-caption .img-details .img-caption{
+    display: block;
+}
 .filer_image_container .img-details .img-credit{
     color: #d1d2d4;
     padding: 0 0 19px 0;
-    display: block;
+    display: none;
     font-size: 12px;
     line-height: 12px;
     font-style: italic;
     opacity: 0.7;
     font-weight: bold;
+}
+.filer_image_container.has-credit .img-details .img-credit{
+    display: block;
 }
 .filer_image_container .img-details .img-credit:first-child {
     padding: 10px 0;
