@@ -111,8 +111,6 @@ class FilerImage(CMSPlugin):
         (LEFT, _("left")),
         (RIGHT, _("right")),
     )
-    DEFAULT_HORIZONTAL_SPACE = 15
-    DEFAULT_VERTICAL_SPACE = 15
 
     OPT_NO_LINK = 1
     OPT_ADD_LINK = 2
@@ -125,7 +123,7 @@ class FilerImage(CMSPlugin):
         _("alt text"), null=True,
         blank=True, max_length=255,
         help_text=_(
-            "Describes the essence of the image for users who have images "
+            "Strongly recommended. Describes the essence of the image for users who have images "
             "turned off in their browser, or are visually impaired and using "
             "a screen reader; and it is useful to identify images to search "
             "engines"))
@@ -195,7 +193,7 @@ class FilerImage(CMSPlugin):
         _('Open link in new window'), default=False)
     page_link = models.ForeignKey(
         Page,
-        null=True,  blank=True,
+        null=True, blank=True,
         help_text=_("if present image will be clickable"),
         verbose_name=_("page link"))
     file_link = FilerFileField(
@@ -214,13 +212,20 @@ class FilerImage(CMSPlugin):
     maintain_aspect_ratio = models.BooleanField(
         _("maintain aspect ratio"), default=True)
 
-    vertical_space = models.PositiveIntegerField(
-        _("vertical space"), null=True, blank=True)
-    horizontal_space = models.PositiveIntegerField(
-        _("horizontal space"), null=True, blank=True,
+    left_space = models.PositiveIntegerField(
+        _("left space"), null=True, blank=True,
+        help_text=_('Add space calculated in pixels on the left of the image.'))
+    right_space = models.PositiveIntegerField(
+        _("right space"), null=True, blank=True,
+        help_text=_('Add space calculated in pixels on the right of the image.'))
+    top_space = models.PositiveIntegerField(
+        _("top space"), null=True, blank=True,
+        help_text=_('Add space calculated in pixels on top of the image.'))
+    bottom_space = models.PositiveIntegerField(
+        _("bottom space"), null=True, blank=True,
         help_text=_(
-            'Add spacing or padding around the image; calculated in pixels; '
-            'if left blank, the vertical spacing will default to 15 pixels.'))
+            'Add space calculated in pixels bellow the image. '
+            'Default is 12 pixels.'))
     border = models.PositiveIntegerField(
         _("border"), null=True, blank=True,
         help_text=_(
@@ -334,32 +339,18 @@ class FilerImage(CMSPlugin):
             return self.image.url
         return ''
 
-    @property
-    def vert_space(self):
-        return self.vertical_space
+    def has_valid_event_tracking(self):
+        return (self.link and
+                self.enable_event_tracking and
+                self.event_category and
+                self.event_action)
 
-    @property
-    def horiz_space(self):
-        return self.horizontal_space
+    def has_valid_caption(self):
+        return (self.show_caption and
+                self.caption and
+                self.caption.strip())
 
-    @property
-    def style(self):
-        style = ""
-        if self.alignment == self.CENTER:
-            style += 'margin: auto; display: block;'
-        else:
-            style += "float: %s;" % self.alignment if self.alignment else ""
-
-        if isinstance(self.vertical_space, (int, long)):
-            style += "margin-top: %spx; margin-bottom: %spx;" % (
-                self.vert_space, self.vert_space)
-
-        if (not self.alignment == self.CENTER
-                and isinstance(self.horiz_space, (int, long))):
-            style += "margin-right: %spx; margin-left: %spx;" % (
-                self.horiz_space, self.horiz_space)
-
-        if self.border:
-            style += "border: %spx solid black;" % self.border
-
-        return style
+    def has_valid_credit(self):
+        return (self.show_credit and
+                self.credit and
+                self.credit.strip())
