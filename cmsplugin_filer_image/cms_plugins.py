@@ -194,14 +194,14 @@ class FilerImagePlugin(CMSPluginBase):
         else:
             image = get_thumbnailer(instance.image).get_thumbnail(options)
 
-        container_classes = ""
-        container_attributes = ""
+        container_classes = []
         if instance.has_valid_caption() and image.width > 200:
-            container_classes += " has-caption"
+            container_classes.append("has-caption")
         if instance.has_valid_credit():
-            container_classes += " has-credit"
+            container_classes.append("has-credit")
         if instance.overlay_link:
-            container_classes += " zoom-in"
+            container_classes.append("zoom-in")
+
         context.update({
             'image_url': image.url,
             'image_width': image.width,
@@ -213,10 +213,8 @@ class FilerImagePlugin(CMSPluginBase):
             'caption': instance.caption or '',
             'credit': instance.credit or '',
             'container_style': self.make_container_style(instance, context, image),
-            'container_classes': container_classes,
-            'container_attributes': container_attributes,
+            'container_classes': ' '.join(container_classes),
             'details_style': 'width:{}px;'.format(image.width),
-            'rnd': 'imagePlugin_{}'.format(randint(10^6, 10**7)),
         })
         if instance.has_valid_event_tracking():
             context['event_tracking'] = {

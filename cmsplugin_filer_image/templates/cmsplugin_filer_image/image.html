@@ -1,43 +1,44 @@
 {% load thumbnail filer_tags filer_image_tags sekizai_tags %}
 {% spaceless %}
+{% now "YmdHiu" as rnd %}
 {% addtoblock "css" %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}cmsplugin_filer_image/css/filer_image.css" media="screen, projection"/>
 {% endaddtoblock %}
 
 {% addtoblock "js" %}
-{% if event_tracking %}
-<script type="text/javascript">
+<script type="text/javascript" id="script_image_plugin_{{ rnd }}">
  (function($) {
    $(document).ready(function(){
+     {% if event_tracking %}
      var event = ['_trackEvent', '{{ event_tracking.category }}', '{{ event_tracking.action}}', '{{ event_tracking.label }}'];
-     $("#{{ rnd }} .image-link").off('click').click(function() {
-       _gaq.push(event);
+     $("#image_plugin_{{ rnd }} .image-link").off('click').click(function() {
+       if (typeof(_gaq) !== 'undefined' && _gaq instanceof Array ){
+         _gaq.push(event);
+       } else {
+         console.log("Google Analytics is not defined on this page!")
+       }
      });
-   });
- })(jQuery)
-</script>
-{% endif %}
+     {% endif %}
 
-{% if overlay_link %}
-<script type="text/javascript">
- (function($){
-   $('#{{ rnd }}').click(function(){
-     $('body').append(
-       '<div class="preview-image-overlay"><span> </span>' +
-       '<img src="{{ overlay_link }}" /></div>');
-     $('.preview-image-overlay').click(function() {$('.preview-image-overlay').remove();});
+     {% if overlay_link %}
+     $('#image_plugin_{{ rnd }}').click(function(){
+       $('body').append(
+         '<div class="preview-image-overlay"><span> </span>' +
+         '<img src="{{ overlay_link }}" /></div>');
+       $('.preview-image-overlay').click(function() {$('.preview-image-overlay').remove();});
+     });
+     {% endif %}
    });
  })(jQuery);
 </script>
-{% endif %}
 {% endaddtoblock %}
 
 {% if image_url %}
-<span id="{{ rnd }}" class="filer_image_container {{ container_classes }}" {{ container_attributes }}
+<span id="image_plugin_{{ rnd }}" class="filer-image-container {{ container_classes }}"
       style="{{ container_style }}">
   {% if link %}<a class="image-link" style="width:{{ image_width }}px;" href="{{ link }}"
                   target="{{ link_target }}">{% endif %}
-  <img class="filer_image" alt="{{ img_alt }}" src="{{ image_url }}"
+  <img class="filer-image" alt="{{ img_alt }}" src="{{ image_url }}"
        width="{{ image_width }}" height="{{ image_height }}"
        {% if caption %}title="{{ caption }}"{% endif %}/>
   <span class="img-details" style="{{ details_style }}">

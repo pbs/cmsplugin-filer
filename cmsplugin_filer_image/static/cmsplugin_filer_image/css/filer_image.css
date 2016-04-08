@@ -1,36 +1,31 @@
-.filer_image_container{
+.filer-image-container{
     margin-bottom: 12px;
     position: relative;
     display: block;
     max-width: 100%;
 }
 
-.filer_image_container .image-link {
+.filer-image-container .image-link {
     display: block;
     max-width: 100%;
 }
 
-.filer_image_container.has-credit,
-.filer_image_container.has-caption {
-    margin-bottom:0;
-}
-
-.filer_image_container .filer_image {
+.filer-image-container .filer-image {
     display: block;
     max-width: 100%;
 }
 
-.filer_image_container.has-credit .filer_image,
-.filer_image_container.has-caption .filer_image {
+.filer-image-container.has-credit .filer-image,
+.filer-image-container.has-caption .filer-image {
     margin-bottom:0;
 }
 
-.filer_image_container + div,
-.filer_image_container + span.img-details + div{
+.filer-image-container + div,
+.filer-image-container + span.img-details + div{
     clear: both;
 }
 
-.filer_image_container .img-details{
+.filer-image-container .img-details{
     background: rgba(0, 0, 0, .5);
     border-top: 1px solid #464646;
     margin-top: 0 !important;
@@ -48,12 +43,12 @@
     max-width:100%;
 }
 
-.filer_image_container.has-credit .img-details,
-.filer_image_container.has-caption .img-details {
+.filer-image-container.has-credit .img-details,
+.filer-image-container.has-caption .img-details {
     display: block;
 }
 
-.filer_image_container .img-details .img-caption{
+.filer-image-container .img-details .img-caption{
     color: #d1d2d4;
     padding: 15px 0px;
     display: none;
@@ -61,10 +56,12 @@
     line-height: 15px;
     font-weight: bold;
 }
-.filer_image_container.has-caption .img-details .img-caption{
+
+.filer-image-container.has-caption .img-details .img-caption{
     display: block;
 }
-.filer_image_container .img-details .img-credit{
+
+.filer-image-container .img-details .img-credit{
     color: #d1d2d4;
     padding: 0 0 19px 0;
     display: none;
@@ -74,16 +71,20 @@
     opacity: 0.7;
     font-weight: bold;
 }
-.filer_image_container.has-credit .img-details .img-credit{
+
+.filer-image-container.has-credit .img-details .img-credit{
     display: block;
 }
-.filer_image_container .img-details .img-credit:first-child {
+
+.filer-image-container .img-details .img-credit:first-child {
     padding: 10px 0;
 }
+
 .zoom-in{
     cursor: zoom-in;
     cursor: -webkit-zoom-in;
 }
+
 .preview-image-overlay {
     z-index: 10002;
     position: fixed;
@@ -94,11 +95,13 @@
     text-align: center;
     background-color: rgba(0, 0, 0, 0.88);
 }
+
 .preview-image-overlay > span {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
 }
+
 .preview-image-overlay > img {
     vertical-align: middle;
     max-height: 90%;
