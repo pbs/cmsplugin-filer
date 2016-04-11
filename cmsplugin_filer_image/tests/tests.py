@@ -101,10 +101,8 @@ class RenderingTest(TestCase):
     def test_create_context(self):
         plugin = FilerImagePlugin()
         actual_context = plugin.render({}, self.filer_image, None)
-        actual_context.pop('rnd')
         expected_context = {
             'caption': '',
-            'container_attributes': '',
             'container_classes': '',
             'container_style': 'width:800px;',
             'credit': '',
@@ -143,13 +141,11 @@ class RenderingTest(TestCase):
 
         plugin = FilerImagePlugin()
         actual_context = plugin.render({}, self.filer_image, None)
-        actual_context.pop('rnd')
         image_url = actual_context.pop('image_url')
         self.assertTrue("201x300" in image_url, "Image is not resized!")
         expected_context = {
             'caption': 'caption value',
-            'container_attributes': '',
-            'container_classes': ' has-caption has-credit',
+            'container_classes': 'has-caption has-credit',
             'container_style': 'border: 5px solid black;width:201px;',
             'credit': 'credit value',
             'details_style': 'width:201px;',
