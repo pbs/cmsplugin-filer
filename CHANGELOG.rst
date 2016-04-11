@@ -1,6 +1,20 @@
 CHANGELOG
 =========
 
+Revision d1addad (11.04.2016, 08:32 UTC)
+----------------------------------------
+
+* LUN-2796
+
+  * Fix tests after refactoring.
+  * Review. Removed unneeded code + small refactoring.
+  * Ignore test results.
+  * Add tests for rendering context rework.
+  * Rework image plugin rendering.
+  * Specialize image margin options.
+
+No other commits.
+
 Revision e93d6be (20.10.2015, 13:22 UTC)
 ----------------------------------------
 
