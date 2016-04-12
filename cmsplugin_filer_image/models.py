@@ -167,7 +167,7 @@ class FilerImage(CMSPlugin):
         _("image alignment"), max_length=10,
         blank=True, null=True,
         choices=FLOAT_CHOICES,
-        help_text=_("When inside a text plugin, text will wrap around images "
+        help_text=_("When inside a text component, text will wrap around images "
                     "with a left or right alignment; text will not wrap "
                     "around an image with a center alignment."))
 
