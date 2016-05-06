@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+Revision cc620eb (06.05.2016, 15:24 UTC)
+----------------------------------------
+
+No new issues.
+
+* Misc commits
+
+  * LUn-2954: Update tooltips.
+
 Revision d1addad (11.04.2016, 08:32 UTC)
 ----------------------------------------
 
