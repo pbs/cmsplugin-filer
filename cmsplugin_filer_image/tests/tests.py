@@ -161,3 +161,11 @@ class RenderingTest(TestCase):
             'link_target': '_blank',
             'overlay_link': ''}
         self.assertEqual(expected_context, actual_context)
+
+    def test_handle_deleted_image(self):
+        plugin = FilerImagePlugin()
+        self.filer_image.image.delete()
+        self.filer_image.width = 1
+        self.filer_image.height = 300
+        actual_context = plugin.render({}, self.filer_image, None)
+        self.assertEqual(actual_context, {}, "Deleted image not handled correctly.")
