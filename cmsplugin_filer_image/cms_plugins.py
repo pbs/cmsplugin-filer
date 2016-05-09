@@ -3,7 +3,7 @@ try:
     import json
 except:
     import simplejson as json
-from random import randint
+import logging
 
 from django import forms
 from django.conf import settings
@@ -18,6 +18,9 @@ from cms.plugin_base import CMSPluginBase
 
 from cmsplugin_filer_image import models
 from cmsplugin_filer_image.models import ThumbnailOption
+
+
+logger = logging.getLogger(__name__)
 
 
 class FilerImagePluginForm(forms.ModelForm):
@@ -193,6 +196,10 @@ class FilerImagePlugin(CMSPluginBase):
             image = instance.image
         else:
             image = get_thumbnailer(instance.image).get_thumbnail(options)
+            if not image:
+                logger.warning("Could not create thumbnail for image %s, options %s",
+                               instance.image, options)
+                return {}
 
         container_classes = []
         if instance.has_valid_caption() and image.width > 200:
