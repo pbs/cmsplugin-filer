@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+Revision 2e3ed05 (15.06.2016, 14:38 UTC)
+----------------------------------------
+
+* LUN-2977
+
+  * Handle case when images are deleted in filer and thumbnails cannot be created.
+
+No other commits.
+
 Revision cc620eb (06.05.2016, 15:24 UTC)
 ----------------------------------------
 
