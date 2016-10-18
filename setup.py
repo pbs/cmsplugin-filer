@@ -4,10 +4,6 @@ from setuptools import setup, find_packages
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-dependency_links = [
-    'http://github.com/pbs/django-cms/tarball/support/2.3.x#egg=django-cms-2.3.5pbs.X.dev',
-    'http://github.com/pbs/django-filer/tarball/master_pbs#egg=django-filer-0.9pbs.X.dev',
-]
 
 setup(
     name = "cmsplugin-filer",
@@ -20,7 +16,6 @@ setup(
     author_email = 'stefan.foulis@gmail.com',
     packages = find_packages(),
     #package_dir = {'':'src'},
-    dependency_links=dependency_links,
     classifiers = [
         'Development Status :: 4 - Beta',
         'Framework :: Django',
@@ -31,8 +26,8 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
     ],
     install_requires=[
-        "django-cms>=2.3.5pbs, <2.3.6",
-        "django-filer >= 0.9pbs, <0.9.1"
+        'django-filer >= 0.9pbs, <0.9pbs1000',
+        'django-cms>=2.3.5pbs,<2.3.5pbs.1000',
     ],
     include_package_data=True,
     zip_safe = False,
